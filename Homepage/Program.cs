@@ -29,16 +29,14 @@ namespace Homepage
 
             app.OnExecute(Start);
 
-            app.Execute(args);
-
-            
+            app.Execute(args);            
         }
 
         public static void Start()
         {
             port = optionPort.HasValue()
                 ? Convert.ToInt32(optionPort.Value())
-                : 0;
+                : 80;
 
             CreateWebHostBuilder(port).Build().Run();
         }
