@@ -27,7 +27,8 @@ export class AppComponent {
 
   triggerGdprPopup(){
     this.toastr.info(
-      "By using this website, you agree to the use of Cookies. <p><em><u><a href='cookies'>Click Here to know more</a></u></em></p> ", 
+      "By using this website, you agree to the use of Cookies."
+      + " <p><em><u><a href='info?topic=Cookie'>Click Here to know more</a></u></em></p> ", 
       "HEADS UP...", 
       {
         closeButton: true,
