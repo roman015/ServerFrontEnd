@@ -14,14 +14,11 @@ export class AppInfoComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       var topic = params['topic'];
 
-      if (topic) {
+      if (topic != null && topic != undefined && document.getElementById(topic) != null) {
+        console.log('Scroll to ' + topic);
         document.getElementById(topic).scrollIntoView(true);
       }
     });
-  }
-
-  scroll(htmlElement: HTMLElement) {
-    htmlElement.scrollIntoView({ behavior: 'smooth' });
   }
 
 }
