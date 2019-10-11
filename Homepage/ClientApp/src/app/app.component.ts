@@ -17,7 +17,7 @@ export class AppComponent {
       this.triggerGdprPopup();
     } else {
       var deadline = new Date(this.prevGdprAcceptanceDateMs);
-      deadline = new Date(deadline.getTime() + (1000 * 60 * 60 * 2));//(1000 * 60 * 60 * 24) * 30);
+      deadline = new Date(deadline.getTime() + (1000 * 60 * 60 * 24) * 30);
 
       if(new Date().getTime() > deadline.getTime()){
         this.triggerGdprPopup();
@@ -28,7 +28,7 @@ export class AppComponent {
   triggerGdprPopup(){
     this.toastr.info(
       "By using this website, you agree to the use of Cookies."
-      + " <p><em><u><a href='info?topic=Cookie'>Click Here to know more</a></u></em></p> ", 
+      + " <p><em><u><a href='info?topic=Cookie' target=”_blank”>Click Here to know more</a></u></em></p> ", 
       "HEADS UP...", 
       {
         closeButton: true,
