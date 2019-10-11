@@ -1,0 +1,45 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#markdown">Markdown</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#preview">Preview</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#save">Save</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="markdown" class="tab-pane fade active show">
+    <div class="container">
+      <div class="row">
+        <h3>Enter Markdown Here</h3>
+        <textarea [(ngModel)]="markdown" title="Enter Markdown (CommonMark) Here"></textarea>
+      </div>
+    </div>
+  </div>
+  <div id="preview" class="tab-pane fade">
+    <div class="container">
+      <div class="row">
+        <div *ngIf="!markdown">HTML Preview Will Appear Here</div>
+        <div class="previewHtml" [innerHTML]="markdown|markdownToHtml|safeHtml"></div>
+      </div>
+    </div>
+  </div>
+  <div id="save" class="tab-pane fade">
+    <div class="container">
+
+      <div class="form-group">
+        <label class="col-form-label" for="title">Title</label>
+        <input type="text" class="form-control" placeholder="Title" id="title">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="summary">Summary</label>
+        <input type="text" class="form-control" placeholder="Summary" id="summary">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="tags">Tags</label>
+        <input type="text" class="form-control" placeholder="Tags" id="tags">
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

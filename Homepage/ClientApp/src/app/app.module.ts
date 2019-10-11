@@ -13,7 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppInfoComponent } from './app-info/app-info.component';
 import { AppBlogComponent } from './app-blog/app-blog.component';
-import { Safe } from './pipes/safeHtmlPipe'
+import { SafePipe } from './pipes/safeHtmlPipe';
+import { MarkdownToHtmlPipe } from './pipes/markdownToHtml';
+import { AppBlogEditComponent } from './app-blog-edit/app-blog-edit.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { Safe } from './pipes/safeHtmlPipe'
     FetchDataComponent,
     AppInfoComponent,
     AppBlogComponent,
-    Safe
+    SafePipe,
+    MarkdownToHtmlPipe,
+    AppBlogEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +36,8 @@ import { Safe } from './pipes/safeHtmlPipe'
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'blog', component: AppBlogComponent },
+      { path: 'blog/edit', component: AppBlogEditComponent },
+      { path: 'blog/edit/:name', component: AppBlogEditComponent },
       { path: 'blog/:name', component: AppBlogComponent },
       { path: 'info', component: AppInfoComponent },
     ]),
