@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Homepage.Models;
+using Homepage.Repositories;
 
 namespace Homepage.Controllers
 {
     [ApiController]
     public class BlogController : Controller
     {
+        private readonly IBlogRepository blogRepository;
+
+        public BlogController(IBlogRepository blogRepository)
+        {
+            this.blogRepository = blogRepository;
+        }
 
         [Route("api/Blog/{blogName}")]
         [HttpGet]
@@ -16,27 +24,12 @@ namespace Homepage.Controllers
         {
             if (string.IsNullOrWhiteSpace(blogName))
             {
-                return new Blog(){
-                    HTML = "The Latest Blog",
-                    Title = "LATEST BLOG",
-                    Summary = "Blog Summary"
-                };
+                return blogRepository.FindLatestBlog();
             }
             else
             {
-                return new Blog(){
-                    HTML = "Blog Titled "  + blogName,
-                    Title = blogName.ToUpper(),
-                    Summary = blogName + " Summary"
-                };
+                return blogRepository.FindSpecificBlog(blogName);
             }
         }
-    }
-
-    public class Blog
-    {
-        public string HTML { get; set; }
-        public string Title { get; set; }
-        public string Summary { get; set; }
     }
 }

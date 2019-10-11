@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using Homepage.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Homepage.Helpers;
 
 namespace Homepage
 {
@@ -20,7 +24,20 @@ namespace Homepage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            if (!string.IsNullOrWhiteSpace(Program.DatabaseConfigPath))
+            {
+                services.AddDbContext<BlogContext>(options =>
+                    options.UseSqlite(Program.DatabaseConfigPath)
+                );
+            }
+
+            // External Helpers/Services
+            services.AddScoped<IBlogHelper, BlogHelper>();
+
+            // Repositories
+            services.AddScoped<IBlogRepository, BlogRepository>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -41,8 +58,15 @@ namespace Homepage
                 app.UseExceptionHandler("/Error");
             }
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
+            if (!string.IsNullOrWhiteSpace(Program.WWWRootPath))
+            {
+                app.UseStaticFiles(new StaticFileOptions()
+                {
+                    FileProvider = new PhysicalFileProvider(Program.WWWRootPath)
+                });
+            }
+
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>

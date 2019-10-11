@@ -13,9 +13,27 @@ namespace Homepage
 {
     public class Program
     {
+        static CommandOption optionWwwRootPath;
+        static CommandOption optionDatabaseConfigPath;
         static CommandOption optionPort;
         static CommandLineApplication app;
         static int port = 0;
+
+        public static string DatabaseConfigPath {
+            get {
+                return optionDatabaseConfigPath.HasValue() 
+                    ? optionDatabaseConfigPath.Value().ToString()
+                    : string.Empty;
+            }
+        } 
+
+        public static string WWWRootPath {
+            get {
+                return optionWwwRootPath.HasValue() 
+                    ? optionWwwRootPath.Value().ToString()
+                    : String.Empty;
+            }
+        }
 
         public static void Main(string[] args)
         {
@@ -25,6 +43,14 @@ namespace Homepage
             app.HelpOption();
             optionPort = app.Option("-p|--port <NUM>",
                 "Port to serve Webpages From",
+                CommandOptionType.SingleValue);
+
+            optionWwwRootPath = app.Option("-w|--wwwroot <PATH>",
+                "Location of wwwroot Folder to serve static files",
+                CommandOptionType.SingleValue);
+
+            optionDatabaseConfigPath = app.Option("-d|--dbconfig <PATH>",
+                "Location of Database Config Json File",
                 CommandOptionType.SingleValue);
 
             app.OnExecute(Start);
