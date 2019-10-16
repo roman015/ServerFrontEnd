@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string
+    @Inject('API_URL') private apiUrl: string
   ) { }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   OnLoginButtonPressed(event: any) {
     this.http
-      .post<LoginResult>(this.baseUrl + 'api/Login',
+      .post<LoginResult>(this.apiUrl + 'Authenticate/Login',
         {
           Email: this.userEmail,
           Otp: this.userPass
