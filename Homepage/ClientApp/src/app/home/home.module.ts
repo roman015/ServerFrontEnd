@@ -9,8 +9,12 @@ import { MainComponent } from './main/main.component';
   imports: [
     AppSharedModule,
     RouterModule.forChild([
-      { path: '', component: MainComponent, pathMatch: 'full' },      
+      {
+        path: '',
+        component: MainComponent,
+        pathMatch: 'full'
+      },
     ]),
-  ],  
+  ],
 })
 export class HomeModule { }

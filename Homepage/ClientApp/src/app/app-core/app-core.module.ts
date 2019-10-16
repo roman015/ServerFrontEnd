@@ -12,24 +12,20 @@ import { AuthGuardService } from '../app-shared/services/auth-guard.service';
     RouterModule.forRoot([
       {
         path: '',
-        loadChildren: () => import('../home/home.module')
-          .then(m => m.HomeModule),
+        loadChildren: '../home/home.module#HomeModule',
         pathMatch: 'full'
       },
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module')
-          .then(m => m.HomeModule)
+        loadChildren: '../home/home.module#HomeModule'
       },
       {
         path: 'auth',
-        loadChildren: () => import('../authentication/authentication.module')
-          .then(m => m.AuthenticationModule)
+        loadChildren: '../authentication/authentication.module#AuthenticationModule'
       },
       {
         path: 'factorio',
-        loadChildren: () => import('../factorio/factorio.module')
-          .then(m => m.FactorioModule),
+        loadChildren: '../factorio/factorio.module#FactorioModule',
         canActivate: [AuthGuardService]
       },
     ]),
