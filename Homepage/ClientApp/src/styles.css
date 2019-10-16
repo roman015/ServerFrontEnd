@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+html, body {
+    height: 100%;
+}
+
+/* TODO : button margin */
+.btn {
+    margin-right: 0.3rem !important;
+}
+
 @media (max-width: 992px){
     .wide-toast {
         width: 100% !important;

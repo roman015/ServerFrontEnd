@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="form-group">
+        <label class="col-form-label" for="Email">Email</label>
+        <input type="text" class="form-control" placeholder="Email" id="Email" [(ngModel)]="userEmail">
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="form-group">
+        <label class="col-form-label" for="Password">Password</label>
+        <input type="password" class="form-control" placeholder="Password" id="Password" [(ngModel)]="userPass">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="OnLoginButtonPressed($event)">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
