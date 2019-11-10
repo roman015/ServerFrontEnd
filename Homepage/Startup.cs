@@ -62,6 +62,7 @@ namespace Homepage
             if (!string.IsNullOrWhiteSpace(Program.WWWRootPath)
                 && !string.IsNullOrWhiteSpace(Program.WWWRootDir))
             {
+                app.UseDefaultFiles(Program.WWWRootPath);
                 app.UseStaticFiles(new StaticFileOptions()
                 {
                     FileProvider = new PhysicalFileProvider(Program.WWWRootDir),
