@@ -54,11 +54,11 @@ namespace Homepage
                 "Port to serve Webpages From",
                 CommandOptionType.SingleValue);
 
-            optionWwwRootPath = app.Option("-w|--wwwrootPath <PATH>",
+            optionWwwRootPath = app.Option("-wp|--wwwrootPath <PATH>",
                 "Virtual Path to serve static files from. Requires --wwwrootDir",
                 CommandOptionType.SingleValue);
 
-            optionWwwRootDir = app.Option("-w|--wwwrootDir <PATH>",
+            optionWwwRootDir = app.Option("-wd|--wwwrootDir <PATH>",
                 "Location of wwwroot Folder to serve static files",
                 CommandOptionType.SingleValue);
 
