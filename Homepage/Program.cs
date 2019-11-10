@@ -14,6 +14,7 @@ namespace Homepage
     public class Program
     {
         static CommandOption optionWwwRootPath;
+        static CommandOption optionWwwRootDir;
         static CommandOption optionDatabaseConfigPath;
         static CommandOption optionPort;
         static CommandLineApplication app;
@@ -35,6 +36,14 @@ namespace Homepage
             }
         }
 
+        public static string WWWRootDir {
+            get {
+                return optionWwwRootDir.HasValue() 
+                    ? optionWwwRootDir.Value().ToString()
+                    : String.Empty;
+            }
+        }
+
         public static void Main(string[] args)
         {
             // Read Command Line Arguments
@@ -45,7 +54,11 @@ namespace Homepage
                 "Port to serve Webpages From",
                 CommandOptionType.SingleValue);
 
-            optionWwwRootPath = app.Option("-w|--wwwroot <PATH>",
+            optionWwwRootPath = app.Option("-w|--wwwrootPath <PATH>",
+                "Virtual Path to serve static files from. Requires --wwwrootDir",
+                CommandOptionType.SingleValue);
+
+            optionWwwRootDir = app.Option("-w|--wwwrootDir <PATH>",
                 "Location of wwwroot Folder to serve static files",
                 CommandOptionType.SingleValue);
 

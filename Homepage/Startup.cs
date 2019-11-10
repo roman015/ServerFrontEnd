@@ -59,11 +59,13 @@ namespace Homepage
             }
 
             app.UseStaticFiles();
-            if (!string.IsNullOrWhiteSpace(Program.WWWRootPath))
+            if (!string.IsNullOrWhiteSpace(Program.WWWRootPath)
+                && !string.IsNullOrWhiteSpace(Program.WWWRootDir))
             {
                 app.UseStaticFiles(new StaticFileOptions()
                 {
-                    FileProvider = new PhysicalFileProvider(Program.WWWRootPath)
+                    FileProvider = new PhysicalFileProvider(Program.WWWRootDir),
+                    RequestPath = Program.WWWRootPath
                 });
             }
 
